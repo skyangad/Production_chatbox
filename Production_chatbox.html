@@ -1,0 +1,107 @@
+<html>
+<body>
+
+<h1>Let’s start chatting...</h1>
+  <br />
+  Click the button to start a chat.
+  <br />
+<style type='text/css'>
+    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        outline: 1px solid #005290;
+    }
+      .embeddedServiceHelpButton .helpButton .uiButton {
+        background-color: #005290;
+        font-family: "Salesforce Sans", sans-serif;
+        width: 222px;
+        max-width:222px;
+        height: 60px;
+        position: fixed;
+        bottom:5px;
+        right:10px;
+        border-radius: 8px 8px 8px 8px;
+    }
+    .message {
+    background-color:transparent;
+    color: #fff; font-size:12px;
+    padding: 6px 8px 6px 6px;
+    margin: 4px 20px; border:0;
+      }
+    .embeddedServiceHelpButton .embeddedServiceIcon::before {
+    font-family: "embeddedserviceiconfont";
+    font-size: 2.25em;
+    content: attr(data-icon);
+    speak: none;
+    text-rendering: auto;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.embeddedServiceHelpButton .helpButton .uiButton {
+    background-color: #377551;
+    font-family: "Salesforce Sans", sans-serif;
+    width: 222px;
+    max-width: 222px;
+    height: 60px;
+    position: fixed;
+    bottom: 5px;
+    right: 10px;
+    border-radius: 8px 8px 8px 8px;
+}
+</style>
+
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+    var initESW = function(gslbBaseURL) {
+        embedded_svc.settings.displayHelpButton = true; //Or false
+        embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+        //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+        //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+        //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+        //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+        // Settings for Chat
+        //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+            // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+            // Returns a valid button ID.
+        //};
+        //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+        //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+        //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+        embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+        embedded_svc.settings.entryFeature = 'LiveAgent';
+
+        embedded_svc.init(
+            'https://growndiamondcorp.my.salesforce.com',
+            'https://growndiamondcorp.secure.force.com/GDChat',
+            gslbBaseURL,
+            '00D7F000003ffgT',
+            'BDMChatAgents',
+            {
+                baseLiveAgentContentURL: 'https://c.la1-c1-hnd.salesforceliveagent.com/content',
+                deploymentId: '5727F000000HGdo',
+                buttonId: '5737F000000HCcP',
+                baseLiveAgentURL: 'https://d.la1-c1-hnd.salesforceliveagent.com/chat',
+                eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I7F000000GnqpUAC_1763d03b898',
+                isOfflineSupportEnabled: false
+            }
+        );
+    };
+
+    if (!window.embedded_svc) {
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://growndiamondcorp.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+        s.onload = function() {
+            initESW(null);
+        };
+        document.body.appendChild(s);
+    } else {
+        initESW('https://service.force.com');
+    }
+</script>
+</body>
+</html>
